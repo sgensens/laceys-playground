@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lacey's Playground</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff4444;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ff6666;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        .video-player {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-list {
+            display: grid;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .video-item {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .video-item:hover {
+            background: #3a3a3a;
+            border-color: #ff4444;
+        }
+
+        .video-item.active {
+            background: #3a1a1a;
+            border-color: #ff4444;
+        }
+
+        .video-title {
+            font-size: 1.1em;
+            color: #ff6666;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lacey's Playground</h1>
+        <p class="subtitle">Don't play if you cry easily</p>
+
+        <div class="video-player">
+            <video id="mainVideo" controls>
+                <source src="video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="video-list">
+            <div class="video-item active" onclick="playVideo('video1.mp4', this)">
+                <p class="video-title">📹 Video 1</p>
+            </div>
+            <div class="video-item" onclick="playVideo('video2.mp4', this)">
+                <p class="video-title">📹 Video 2</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function playVideo(videoFile, element) {
+            // Update video source
+            const video = document.getElementById('mainVideo');
+            video.src = videoFile;
+            video.load();
+            video.play();
+
+            // Update active state
+            document.querySelectorAll('.video-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
